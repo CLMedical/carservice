@@ -20,6 +20,21 @@
 
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    window.onload = function() {
+      Swal.fire({
+        title: 'หยุดปีใหม่ 30 ธ.ค. ถึง 2 ม.ค.',
+        text: 'โปรดทราบว่าในช่วงเวลาดังกล่าวไม่มีการให้บริการจองคิว',
+        icon: 'info',
+        confirmButtonText: 'เข้าใช้งาน',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // สามารถดำเนินการต่อไปในหน้าจองคิวได้
+        }
+      });
+    }
+  </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
