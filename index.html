@@ -24,23 +24,27 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // ใช้ $(document).ready() เพื่อให้มั่นใจว่า DOM โหลดครบแล้ว
         $(document).ready(function() {
+            // ใช้ SweetAlert2 และตั้งค่าการแสดงผล
             Swal.fire({
                 title: 'หยุดปีใหม่ 30 ธ.ค. ถึง 2 ม.ค.',
                 text: 'โปรดทราบว่าในช่วงเวลาดังกล่าวไม่มีการให้บริการจองคิว',
                 icon: 'info',
                 confirmButtonText: 'เข้าใช้งาน',
                 customClass: {
-                    container: 'my-swal-container',
-                    popup: 'my-swal-popup',
-                    title: 'my-swal-title',
-                    content: 'my-swal-content',
-                    confirmButton: 'my-swal-confirm-btn'
+                    container: 'my-swal-container', // ควบคุมให้ SweetAlert2 อยู่เหนือเนื้อหาอื่น ๆ
+                    popup: 'my-swal-popup', // การกำหนดขนาด
+                    title: 'my-swal-title', // ปรับแต่งชื่อ
+                    content: 'my-swal-content', // ปรับแต่งข้อความ
+                    confirmButton: 'my-swal-confirm-btn' // ปรับแต่งปุ่ม
+                },
+                willClose: () => {
+                    // เมื่อ SweetAlert2 ปิด จะคืนรูปแบบเดิมของหน้า
+                    document.body.style.overflow = 'auto';
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // สามารถดำเนินการต่อไปในหน้าจองคิวได้
+                    // เมื่อผู้ใช้คลิก 'เข้าใช้งาน'
                 }
             });
         });
@@ -52,12 +56,12 @@
     <!-- เพิ่ม CSS เฉพาะสำหรับ SweetAlert -->
     <style>
         .my-swal-container {
-            z-index: 10000 !important; /* ควบคุมลำดับชั้นของหน้าต่าง */
+            z-index: 10000 !important; /* ทำให้ SweetAlert แสดงเหนือเนื้อหาทั้งหมด */
         }
         .my-swal-popup {
-            width: 90% !important; /* ปรับขนาดของ SweetAlert */
+            width: 90% !important; /* กำหนดขนาดของ SweetAlert */
             max-width: 500px !important; /* ขนาดสูงสุด */
-            text-align: center !important; /* จัดการข้อความให้อยู่กลาง */
+            text-align: center !important; /* จัดตำแหน่งข้อความให้อยู่กลาง */
         }
         .my-swal-title {
             font-family: 'Bai Jamjuree', sans-serif !important; /* ฟอนต์ที่ใช้ใน SweetAlert */
@@ -71,6 +75,11 @@
             background-color: #007bff !important;
             color: white !important;
             border-radius: 5px !important;
+        }
+
+        /* ป้องกันการเลื่อนหน้าเมื่อ SweetAlert แสดงผล */
+        body {
+            overflow: hidden !important;
         }
     </style>
 </head>
